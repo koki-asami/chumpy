@@ -20,6 +20,7 @@ try:  # for pip < 20.1
     install_requires = [str(ir.req) for ir in install_reqs]
 except AttributeError:  # for pip >= 20.1
     install_requires = [str(ir.requirement) for ir in install_reqs]
+    print(install_requires)
 
 def get_version():
     namespace = run_path('chumpy/version.py')
@@ -29,7 +30,11 @@ def get_version():
 setup(
     name="chumpy",
     version=get_version(),
-    install_requires = install_requires,
+    install_requires = [
+        "numpy>=1.8.1",
+        "scipy>=0.13.0",
+        "six>=1.11.0",
+    ],
     author="Matthew Loper",
     author_email="matt.loper@gmail.com",
     description="chumpy",
