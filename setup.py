@@ -4,7 +4,7 @@ Author(s): Matthew Loper
 See LICENCE.txt for licensing and contact information.
 """
 
-from setuptools import setup
+import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -20,14 +20,15 @@ try:  # for pip < 20.1
     install_requires = [str(ir.req) for ir in install_reqs]
 except AttributeError:  # for pip >= 20.1
     install_requires = [str(ir.requirement) for ir in install_reqs]
-    print(install_requires)
+    print(install_requires, type(install_requires[0]))
 
 def get_version():
     namespace = run_path('chumpy/version.py')
+    print(namespace['version'],type(namespace['version']))
     return namespace['version']
 
 
-setup(
+setuptools.setup(
     name="chumpy",
     version=get_version(),
     install_requires = [
